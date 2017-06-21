@@ -9,6 +9,9 @@ npm install -S prepend-transform
 ## Usage
 
 import pt from 'prepend-transform';
+import * as cp from 'child_process';
 
-n.stdout.pipe(pt('[remote stdout]')).pipe(process.stdout);
-n.stderr.pipe(pt('[remote stderr]')).pipe(process.stderr);
+const n = cp.spawn('bash');
+
+n.stdout.pipe(pt('[child stdout]')).pipe(process.stdout);
+n.stderr.pipe(pt('[child stderr]')).pipe(process.stderr);
