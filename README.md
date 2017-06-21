@@ -2,13 +2,15 @@
 # Prepend-Transform
 
 ## Installation
-npm install -S prepend-transform
 
+```bash
+npm install -S prepend-transform
+```
 
 
 ## Usage
 
-```ecmascript 6
+```javascript
 
 import pt from 'prepend-transform';
 import * as cp from 'child_process';
