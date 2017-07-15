@@ -3,7 +3,28 @@ import * as assert from 'assert';
 
 ///////////////////////////////////////////////////
 
-export default function (pre: string) {
+export default function(pre: string){
+
+  assert(typeof pre === 'string', 'prepend-transform usage error -> only argument must be a string.');
+
+  let saved = '';
+
+  return new stream.Transform({
+
+    transform(chunk, encoding, cb) {
+      cb(null, pre + String(chunk));
+    },
+
+    flush(cb) {
+      // this.push(saved);/
+      cb();
+    }
+
+  });
+
+}
+
+export const x = function (pre: string) {
 
   assert(typeof pre === 'string', 'prepend-transform usage error -> only argument must be a string.');
 
@@ -41,4 +62,4 @@ export default function (pre: string) {
 
   });
 
-}
+};
