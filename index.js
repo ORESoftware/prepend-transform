@@ -2,35 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var stream = require("stream");
 var assert = require("assert");
-exports.x = function (pre) {
-    assert(typeof pre === 'string', 'prepend-transform usage error -> only argument must be a string.');
-    var saved = [];
-    return new stream.Transform({
-        transform: function (chunk, encoding, cb) {
-            var split = String(chunk).split('\n');
-            var v = pre + split.shift();
-            split.forEach(function (s) {
-                saved.push(s + '\n');
-            });
-            cb(null, v);
-        },
-        flush: function (cb) {
-            var _this = this;
-            saved.forEach(function (s) {
-                _this.push(String(pre) + s);
-            });
-            cb();
-        }
-    });
-};
 function default_1(pre) {
     assert(typeof pre === 'string', 'prepend-transform usage error -> only argument must be a string.');
-    var saved = '';
+    var lastLineData = '';
     return new stream.Transform({
+        objectMode: true,
         transform: function (chunk, encoding, cb) {
-            cb(null, pre + String(chunk));
+            var _this = this;
+            var data = String(chunk);
+            if (lastLineData) {
+                data = lastLineData + data;
+            }
+            var lines = data.split('\n');
+            lastLineData = lines.splice(lines.length - 1, 1)[0];
+            lines.forEach(function (l) {
+                _this.push(pre + l);
+            });
+            cb();
         },
         flush: function (cb) {
+            if (lastLineData) {
+                this.push(pre + lastLineData);
+            }
+            lastLineData = '';
             cb();
         }
     });
