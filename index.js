@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var stream = require("stream");
 var assert = require("assert");
-module.exports = function (pre) {
+exports.pt = function (pre) {
     assert(typeof pre === 'string', 'prepend-transform usage error -> only argument must be a string.');
     var lastLineData = '';
     return new stream.Transform({
@@ -29,5 +29,4 @@ module.exports = function (pre) {
         }
     });
 };
-var $exports = module.exports;
-exports.default = $exports;
+exports.default = exports.pt;
