@@ -1,3 +1,2 @@
-/// <reference types="node" />
-import * as stream from 'stream';
-export default function (pre: string): stream.Transform;
+declare const $exports: any;
+export default $exports;

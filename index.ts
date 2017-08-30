@@ -3,7 +3,7 @@ import * as assert from 'assert';
 
 ///////////////////////////////////////////////////
 
-export default function (pre: string) {
+module.exports = function (pre: string) {
 
   assert(typeof pre === 'string', 'prepend-transform usage error -> only argument must be a string.');
 
@@ -42,3 +42,7 @@ export default function (pre: string) {
   });
 
 };
+
+
+const $exports = module.exports;
+export default $exports;
