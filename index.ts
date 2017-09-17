@@ -3,9 +3,17 @@ import * as assert from 'assert';
 
 ///////////////////////////////////////////////////
 
-export const pt = function (pre: string) {
+export interface IPTOptions {
+  omitWhitespace: boolean
+}
 
-  assert(typeof pre === 'string', 'prepend-transform usage error -> only argument must be a string.');
+///////////////////////////////////////////////////
+
+export const pt = function (pre: string, $options?: Partial<IPTOptions>) {
+
+  const options = $options || {};
+  assert(typeof pre === 'string', `prepend-transform usage error -> first argument must be a string.`);
+  assert(typeof options === 'object', `prepend-transform usage error -> 'options' value must be an object.`);
 
   let lastLineData = '';
 
@@ -21,11 +29,20 @@ export const pt = function (pre: string) {
       }
 
       let lines = data.split('\n');
-      lastLineData = lines.splice(lines.length-1,1)[0];
+      lastLineData = lines.splice(lines.length - 1, 1)[0];
 
-      lines.forEach(l => {
-         this.push(pre + l + '\n');
-      });
+      if (options.omitWhitespace) {
+        lines.forEach(l => {
+          if (/[^ ]/.test(l)) {
+            this.push(pre + l + '\n');
+          }
+        });
+      }
+      else {
+        lines.forEach(l => {
+          this.push(pre + l + '\n');
+        });
+      }
 
       cb();
 
@@ -33,7 +50,12 @@ export const pt = function (pre: string) {
 
     flush(cb) {
       if (lastLineData) {
-        this.push(pre + lastLineData + '\n')
+        if (options.omitWhitespace && /[^ ]/.test(lastLineData)) {
+          this.push(pre + lastLineData + '\n')
+        }
+        else {
+          this.push(pre + lastLineData + '\n');
+        }
       }
       lastLineData = '';
       cb();
@@ -42,6 +64,5 @@ export const pt = function (pre: string) {
   });
 
 };
-
 
 export default pt;

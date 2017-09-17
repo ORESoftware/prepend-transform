@@ -2,8 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var stream = require("stream");
 var assert = require("assert");
-exports.pt = function (pre) {
-    assert(typeof pre === 'string', 'prepend-transform usage error -> only argument must be a string.');
+exports.pt = function (pre, $options) {
+    var options = $options || {};
+    assert(typeof pre === 'string', "prepend-transform usage error -> first argument must be a string.");
+    assert(typeof options === 'object', "prepend-transform usage error -> 'options' value must be an object.");
     var lastLineData = '';
     return new stream.Transform({
         objectMode: true,
@@ -15,14 +17,28 @@ exports.pt = function (pre) {
             }
             var lines = data.split('\n');
             lastLineData = lines.splice(lines.length - 1, 1)[0];
-            lines.forEach(function (l) {
-                _this.push(pre + l + '\n');
-            });
+            if (options.omitWhitespace) {
+                lines.forEach(function (l) {
+                    if (/[^ ]/.test(l)) {
+                        _this.push(pre + l + '\n');
+                    }
+                });
+            }
+            else {
+                lines.forEach(function (l) {
+                    _this.push(pre + l + '\n');
+                });
+            }
             cb();
         },
         flush: function (cb) {
             if (lastLineData) {
-                this.push(pre + lastLineData + '\n');
+                if (options.omitWhitespace && /[^ ]/.test(lastLineData)) {
+                    this.push(pre + lastLineData + '\n');
+                }
+                else {
+                    this.push(pre + lastLineData + '\n');
+                }
             }
             lastLineData = '';
             cb();
