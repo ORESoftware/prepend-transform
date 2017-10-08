@@ -1,3 +1,6 @@
+'use strict';
+
+//core
 import * as stream from 'stream';
 import * as assert from 'assert';
 

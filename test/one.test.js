@@ -1,5 +1,5 @@
 
 
-const pt = require('..').default;
+const {pt} = require('..');
 
 console.log(pt);
