@@ -11,11 +11,12 @@ test
 *.json
 *.ts
 *.md
+*.yml
 
 ### files
 .gitignore
 .npmignore
-.travis.yml
+.editorconfig
 
 ### negation
 !*.d.ts
