@@ -3,6 +3,7 @@
 .idea
 node_modules
 test
+scripts
 
 ### matching
 *.sh
