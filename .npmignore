@@ -4,6 +4,7 @@
 node_modules
 test
 scripts
+.vscode
 
 ### matching
 *.sh

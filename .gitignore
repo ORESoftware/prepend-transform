@@ -2,8 +2,11 @@
 ### folders
 .idea
 node_modules
+.vscode
 
 ### matching
 *.log
+
+### files
 package-lock.json
 yarn.lock
