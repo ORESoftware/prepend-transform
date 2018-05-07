@@ -1,12 +1,12 @@
 {
   "name": "prepend-transform",
-  "version": "0.0.1012",
+  "version": "0.0.1013",
   "description": "Prepend a string to beginning of each line of stdout/stderr.",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "typings": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "bin": {
-    "prepend": "cli.js"
+    "prepend": "dist/cli.js"
   },
   "scripts": {
     "test": "suman"
@@ -27,12 +27,15 @@
     "pipe"
   ],
   "author": "Olegzandr VD",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ORESoftware/prepend-transform/issues"
   },
   "homepage": "https://github.com/ORESoftware/prepend-transform#readme",
   "devDependencies": {
     "@types/node": "^8.0.1"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1"
   }
 }
