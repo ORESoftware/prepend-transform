@@ -1,14 +1,10 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "declaration": true,
     "baseUrl": ".",
-    "paths": {
-    },
-    "types": [
-      "node"
-    ],
     "allowJs": false,
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "noImplicitAny": true,
     "removeComments": true,
@@ -19,13 +15,8 @@
       "es2017"
     ]
   },
-  "allowJs": true,
   "compileOnSave": false,
   "include": [
-    "./**/*.ts"
-  ],
-  "exclude": [
-    "test",
-    "node_modules"
+    "src"
   ]
 }

@@ -7,12 +7,13 @@ import * as assert from 'assert';
 ///////////////////////////////////////////////////
 
 export interface IPTOptions {
-  omitWhitespace: boolean
+  omitWhitespace?: boolean,
+  color?: Function
 }
 
 ///////////////////////////////////////////////////
 
-export const pt = function (pre: string, $options?: Partial<IPTOptions>) {
+export const pt = function (pre: string, $options?: IPTOptions) {
 
   const options = $options || {};
   assert(typeof pre === 'string', `prepend-transform usage error -> first argument must be a string.`);

@@ -3,6 +3,7 @@
 .idea
 node_modules
 .vscode
+dist/*
 
 ### matching
 *.log
@@ -10,3 +11,6 @@ node_modules
 
 ### files
 yarn.lock
+
+### matching
+!dist/.gitkeep
