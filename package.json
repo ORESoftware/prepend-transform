@@ -1,12 +1,12 @@
 {
   "name": "prepend-transform",
-  "version": "0.0.1014",
+  "version": "0.0.1015",
   "description": "Prepend a string to beginning of each line of stdout/stderr.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "bin": {
-    "prepend": "dist/cli.js"
+    "prepend_with": "dist/cli.js"
   },
   "scripts": {
     "test": "suman test"
