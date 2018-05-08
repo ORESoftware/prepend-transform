@@ -13,6 +13,10 @@ export interface IPTOptions {
 
 ///////////////////////////////////////////////////
 
+export const r2gSmokeTest = function () {
+  return true;
+};
+
 export const pt = function (pre: string, $options?: IPTOptions) {
 
   const options = $options || {};
@@ -70,3 +74,5 @@ export const pt = function (pre: string, $options?: IPTOptions) {
 };
 
 export default pt;
+
+
