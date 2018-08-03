@@ -6,7 +6,7 @@ import * as assert from 'assert';
 
 ///////////////////////////////////////////////////
 
-export interface IPTOptions {
+export interface PTOptions {
   omitWhitespace?: boolean,
   color?: Function
 }
@@ -17,11 +17,11 @@ export const r2gSmokeTest = function () {
   return true;
 };
 
-export const pt = function (pre: string, $options?: IPTOptions) {
+export const pt = function (pre: string, o?: PTOptions) {
 
-  const options = $options || {};
-  assert(typeof pre === 'string', `prepend-transform usage error -> first argument must be a string.`);
-  assert(typeof options === 'object', `prepend-transform usage error -> 'options' value must be an object.`);
+  const opts = o || {};
+  assert(pre && typeof pre === 'string', `prepend-transform usage error -> first argument must be a string.`);
+  assert(opts && typeof opts === 'object', `prepend-transform usage error -> 'options' value must be an object.`);
 
   let lastLineData = '';
 
@@ -39,7 +39,7 @@ export const pt = function (pre: string, $options?: IPTOptions) {
       let lines = data.split('\n');
       lastLineData = lines.splice(lines.length - 1, 1)[0];
 
-      if (options.omitWhitespace) {
+      if (opts.omitWhitespace) {
         lines.forEach(l => {
           if (/[^ ]/.test(l)) {
             this.push(pre + l + '\n');
@@ -58,7 +58,7 @@ export const pt = function (pre: string, $options?: IPTOptions) {
 
     flush(cb) {
       if (lastLineData) {
-        if (options.omitWhitespace && /[^ ]/.test(lastLineData)) {
+        if (opts.omitWhitespace && /[^ ]/.test(lastLineData)) {
           this.push(pre + lastLineData + '\n')
         }
         else {

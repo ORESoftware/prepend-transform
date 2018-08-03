@@ -39,7 +39,6 @@
     "chalk": "^2.4.1"
   },
   "r2g": {
-    "copy-tests": "echo 'noooop'; >&2 echo 'neun'",
-    "run-tests": "echo 'foobar'; >&2 echo 'neubar'; exit 0;"
+    "test": "echo 'noop'"
   }
 }
