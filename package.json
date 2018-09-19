@@ -1,6 +1,6 @@
 {
   "name": "prepend-transform",
-  "version": "0.0.1017",
+  "version": "0.0.1018",
   "description": "Prepend a string to beginning of each line of stdout/stderr.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
