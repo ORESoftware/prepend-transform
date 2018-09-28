@@ -1,5 +1,13 @@
 
+<br>
+
+[![Version](https://img.shields.io/npm/v/prepend-transform.svg?colorB=green)](https://www.npmjs.com/package/prepend-transform)
+
 # Prepend-Transform
+
+>
+>  Prepend text to the beginning of each line in a stream.
+>
 
 ## Installation
 
