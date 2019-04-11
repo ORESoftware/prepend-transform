@@ -17,7 +17,7 @@ export const r2gSmokeTest = function () {
   return true;
 };
 
-export const pt =  (pre: string, o?: PTOptions) => {
+export const pt = (pre: string, o?: PTOptions) => {
   return new PrependTransform(pre, o);
 };
 
